@@ -19,17 +19,17 @@ function siteheader($title)
 	global $screensize;
 	echo "<html>
 	<head>
+		<meta charset=\"utf-8\">
 		<meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">
-		<link href='https://fonts.googleapis.com/css?family=Audiowide' rel='stylesheet'>
-		<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
 		<title>$venueName Songbook</title>
+		<link rel=\"stylesheet\" href=\"https://cdn.simplecss.org/simple.min.css\">
 		<link rel=stylesheet type=\"text/css\" href=venuestyle.css />
 		<script type=\"text/javascript\">
     			function submitreq(varid){
         			window.location = \"./submitreq.php?id=\" + varid;
     			}
 		</script>
-	      </head><body>";
+	</head><body>";
 }
 
 function sitefooter() {
