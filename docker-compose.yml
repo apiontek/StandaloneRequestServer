@@ -1,0 +1,9 @@
+version: '3.9'
+services:
+  songbook:
+    image: php:8.0-apache
+    container_name: songbook
+    volumes:
+      - .:/var/www/html
+    ports:
+      - 8080:80
