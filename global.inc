@@ -20,7 +20,7 @@ function siteheader($title)
 	echo "<html><head>
 		<link href='https://fonts.googleapis.com/css?family=Audiowide' rel='stylesheet'>
 		<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
-		<title>$venueName Karaoke Songbook</title>
+		<title>$venueName Songbook</title>
 		<link rel=stylesheet type=\"text/css\" href=venuestyle.css />
 		<script type=\"text/javascript\">
     			function submitreq(varid){
@@ -38,9 +38,10 @@ function navbar($backurl)
 {
 	if ($backurl == "")
 		$backurl = index.php;
+	global $venueName;
 	global $screensize;
 	echo "<div class=navbar>
-	<span class=title>OpenKJ Songbook</span>
+	<span class=title>$venueName Songbook</span>
 	</div><div class=mainbody><span class=backbtn><a class=button href=\"$backurl\" class=navbar id=backlink>Back</a></span>";
 }
 
