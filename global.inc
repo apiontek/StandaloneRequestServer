@@ -22,7 +22,7 @@ function siteheader($title)
 		<meta charset=\"utf-8\">
 		<meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">
 		<title>$venueName Songbook</title>
-		<link rel=\"stylesheet\" href=\"https://cdn.simplecss.org/simple.min.css\">
+		<link rel=stylesheet type=\"text/css\" href=simple.min.css />
 		<link rel=stylesheet type=\"text/css\" href=venuestyle.css />
 		<script type=\"text/javascript\">
     			function submitreq(varid){
@@ -33,7 +33,7 @@ function siteheader($title)
 }
 
 function sitefooter() {
-	echo "</div></body></html>";
+	echo "</main></body></html>";
 }
 
 function navbar($backurl) 
@@ -42,9 +42,10 @@ function navbar($backurl)
 		$backurl = index.php;
 	global $venueName;
 	global $screensize;
-	echo "<div class=navbar>
-	<span class=title>$venueName Songbook</span>
-	</div><div class=mainbody><span class=backbtn><a class=button href=\"$backurl\" class=navbar id=backlink>Back</a></span>";
+	echo "<header>
+	<h1>$venueName Songbook</h1>
+	<nav><a href=\"$backurl\">Back</a></nav>
+	</header><main>";
 }
 
 function setAccepting($accepting)
@@ -85,9 +86,20 @@ function searchform()
 	{
 		global $url_name;
 		global $screensize;
-		echo "<br><p><form method=get action=search.php>Song search: <input type=text name=q autofocus autocomplete=off><input type=submit value=Search></form></p>";
-		echo '<p class=info>You may enter any part of the artist and/or title of the song.  Partial words are allowed.</p>
-			<p class=info>For example "pai bla stone" would match "Rolling Stones, The - Paint it black".</p>';
+		echo '<form method="get" action="search.php">
+			<p>
+				<label><strong>Song search</strong></label>
+				<input type="text" name="q" autofocus autocomplete="off">
+			</p>
+			<p><input type="submit" value="Search"></p>
+		</form>';
+		echo '<details open>
+			<summary>Hints</summary>
+			<small>
+			<p>You may enter any part of the artist and/or title of the song.  Partial words are allowed.</p>
+			<p>For example "pai bla stone" would match "Rolling Stones, The - Paint it black".</p>
+			</small>
+		</details>';
 	}
 }
 

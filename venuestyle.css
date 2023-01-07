@@ -1,0 +1,149 @@
+/* Force dark theme */
+:root {
+  color-scheme: dark;
+  --bg: #11191F;
+  --accent-bg: #18232C;
+  --border: #2d3c49;
+  --text: #dcdcdc;
+  --text-light: #ababab;
+  --accent: #6D9AB0;
+  --code: #f06292;
+  --preformatted: #ccc;
+  --disabled: #111;
+  --brand: #C84630;
+  --brand-shadow: #a3321e;
+}
+
+/* Ensure same colors if user prefers-color-scheme: dark */
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --bg: #11191F;
+    --accent-bg: #18232C;
+    --border: #2d3c49;
+    --text: #dcdcdc;
+    --text-light: #ababab;
+    --accent: #6D9AB0;
+    --code: #f06292;
+    --preformatted: #ccc;
+    --disabled: #111;
+    --brand: #C84630;
+    --brand-shadow: #a3321e;
+  }
+}
+
+/* Overall typography */
+body {
+  font-size: 1.25rem;
+  color: var(--text-light);
+}
+
+/* Header with reduced padding and modified grid layout */
+body > header {
+  text-align: inherit;
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: auto auto;
+  align-items: center;
+  grid-column: 1 / -1;
+  padding: 1rem;
+}
+body > header > h1 {
+  font-size: 2.25rem;
+  grid-row: 1 / 2;
+  grid-column: 2 / 3;
+  justify-self: end;
+  margin: 0;
+  color: var(--brand);
+  text-align: right;
+}
+/* Reduce header size on mobile */
+@media only screen and (max-width: 720px) {
+  body > header > h1 {
+    font-size: 1.75rem;
+  }
+}
+body > header > nav {
+  grid-row: 1 / 2;
+  grid-column: 1 / 2;
+  padding: 0;
+  font-size: inherit;
+}
+body > header > nav > a,
+body > header > nav > a:visited {
+  margin: 0;
+  font-size: inherit;
+  color: var(--accent);
+  border: 2px solid var(--accent);
+  padding: 0.7rem 0.9rem;
+  font-weight: 700;
+  line-height: 1.25;
+  text-decoration: none;
+}
+body > header > nav> a:hover {
+  filter: brightness(1.4);
+  cursor: pointer;
+}
+
+
+/* Default button style outlined */
+button,
+[role="button"],
+input[type="submit"],
+input[type="reset"],
+input[type="button"],
+label[type="button"] {
+  font-weight: 700;
+  font-size: inherit;
+  background-color: var(--bg);
+  color: var(--accent);
+  border: 2px solid var(--accent);
+}
+
+
+/* Form as grid for responsive layout */
+body > main > form {
+  display: grid;
+  gap: 1rem;
+  align-items: end;
+  grid-template-rows: auto;
+  grid-template-columns: auto min-content;
+}
+@media only screen and (max-width: 720px) {
+  body > main > form {
+    grid-template-rows: auto auto;
+    grid-template-columns: auto;
+    gap: 0.5rem;
+    margin-bottom: 2.5rem;
+  }
+  body > main > form > p {
+    margin: 0;
+  }
+}
+body > main > form label {
+  margin-bottom: 0.5rem;
+}
+input[type="text"] {
+  font-size: 1.6rem;
+  font-weight: 700;
+  width: 100%;
+  margin-bottom: 0;
+  border-width: 2px;
+  color: var(--accent);
+}
+body > main > form input[type="submit"] {
+  margin-bottom: 0;
+}
+input[type="text"]:focus {
+  outline: none !important;
+  border: 2px solid var(--brand);
+  box-shadow: 0 0 5px var(--brand-shadow);
+}
+
+/* Hints details */
+body > main > details[open] summary {
+  margin-bottom: -0.5rem;
+}
+body > main > details p {
+  margin: .5rem 0;
+}
