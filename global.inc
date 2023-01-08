@@ -19,7 +19,8 @@ function siteheader($title)
 	global $screensize;
 	echo "<html>
 	<head>
-		<meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">
+		<meta charset=\"UTF-8\">
+		<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">
 		<link href='https://fonts.googleapis.com/css?family=Audiowide' rel='stylesheet'>
 		<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
 		<title>$venueName Songbook</title>
