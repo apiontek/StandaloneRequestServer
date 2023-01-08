@@ -22,7 +22,9 @@ function siteheader($title)
 		<meta charset=\"UTF-8\">
 		<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">
 		<title>$venueName Songbook</title>
-		<link rel=stylesheet type=\"text/css\" href=venuestyle.css />
+		<link rel=\"stylesheet\" href=\"https://fonts.xz.style/serve/inter.css\">
+		<link rel=\"stylesheet\" type=\"text/css\" href=\"new.min.css\" />
+		<link rel=\"stylesheet\" type=\"text/css\" href=\"venuestyle.css\" />
 		<script type=\"text/javascript\">
     			function submitreq(varid){
         			window.location = \"./submitreq.php?id=\" + varid;
