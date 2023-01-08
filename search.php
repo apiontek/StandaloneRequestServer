@@ -3,18 +3,22 @@ include('global.inc');
 siteheader('Search Results');
 navbar("index.php");
 
+$minSearchChars = 3;
+
 if ($_GET['q'] == '') {
-        echo "<p>You must enter at least one search term</p>";
+        echo "<p><strong>Your search query was empty. Please try again.</strong></p>
+          <p>You must enter at least $minSearchChars letters/numbers as a search query.</p>";
         die();
 }
 
 if (strlen($_GET['q']) < 3)
 {
-	echo '<p>Your search string was too short, please try again</p>';
+  echo "<p><strong>Your search query was too short. Please try again.</strong></p>
+    <p>You must enter at least $minSearchChars letters/numbers as a search query.</p>";
 	die();
 }
 
-echo '<br><p>Search Results<br>Tap a song to submit it</p>';
+echo '<p><strong>Search Results</strong></p><p>Tap a song to submit it</p>';
 
 $terms = explode(' ',$_GET['q']);
 $no = count($terms);

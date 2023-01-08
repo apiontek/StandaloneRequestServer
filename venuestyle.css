@@ -1,5 +1,19 @@
-/* Force dark theme */
+@import url("https://cdn.jsdelivr.net/npm/@fontsource/righteous@4.5.7/index.css");
+@import url("https://cdn.jsdelivr.net/npm/@xz/fonts@1/serve/metropolis.min.css");
+
+
+
+/* simplecss variable overrides */
 :root {
+  /* custom fonts */
+  --sans-font: 'Metropolis', -apple-system, BlinkMacSystemFont, "Avenir Next", Avenir,
+  "Nimbus Sans L", Roboto, "Noto Sans", "Segoe UI", Arial, Helvetica,
+  "Helvetica Neue", sans-serif;
+  --brand-font: 'Righteous', 'Metropolis', -apple-system, BlinkMacSystemFont, "Avenir Next", Avenir,
+  "Nimbus Sans L", Roboto, "Noto Sans", "Segoe UI", Arial, Helvetica,
+  "Helvetica Neue", sans-serif;
+
+  /* Force dark mode styles */
   color-scheme: dark;
   --bg: #11191F;
   --accent-bg: #18232C;
@@ -32,9 +46,8 @@
   }
 }
 
-/* Overall typography */
+/* Body typography */
 body {
-  font-size: 1.25rem;
   color: var(--text-light);
 }
 
@@ -49,7 +62,8 @@ body > header {
   padding: 1rem;
 }
 body > header > h1 {
-  font-size: 2.25rem;
+  font-family: var(--brand-font);
+  font-size: 2.5rem;
   grid-row: 1 / 2;
   grid-column: 2 / 3;
   justify-self: end;
@@ -60,7 +74,7 @@ body > header > h1 {
 /* Reduce header size on mobile */
 @media only screen and (max-width: 720px) {
   body > header > h1 {
-    font-size: 1.75rem;
+    font-size: 2rem;
   }
 }
 body > header > nav {
@@ -77,7 +91,7 @@ body > header > nav > a:visited {
   border: 2px solid var(--accent);
   padding: 0.7rem 0.9rem;
   font-weight: 700;
-  line-height: 1.25;
+  line-height: 1;
   text-decoration: none;
 }
 body > header > nav> a:hover {
@@ -98,6 +112,7 @@ label[type="button"] {
   background-color: var(--bg);
   color: var(--accent);
   border: 2px solid var(--accent);
+  line-height: 1;
 }
 
 
@@ -124,12 +139,14 @@ body > main > form label {
   margin-bottom: 0.5rem;
 }
 input[type="text"] {
-  font-size: 1.6rem;
+  /* font-size: 1.25rem; */
+  line-height: 1;
   font-weight: 700;
   width: 100%;
   margin-bottom: 0;
   border-width: 2px;
   color: var(--accent);
+  padding: 0.7rem 0.7rem;
 }
 body > main > form input[type="submit"] {
   margin-bottom: 0;

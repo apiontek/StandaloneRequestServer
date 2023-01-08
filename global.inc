@@ -20,7 +20,7 @@ function siteheader($title)
 	echo "<html>
 	<head>
 		<meta charset=\"utf-8\">
-		<meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">
+		<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">
 		<title>$venueName Songbook</title>
 		<link rel=stylesheet type=\"text/css\" href=simple.min.css />
 		<link rel=stylesheet type=\"text/css\" href=venuestyle.css />
