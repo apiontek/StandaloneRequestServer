@@ -22,7 +22,8 @@ function siteheader($title)
 		<meta charset=\"UTF-8\">
 		<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">
 		<title>$venueName Songbook</title>
-		<link rel=\"stylesheet\" href=\"https://fonts.xz.style/serve/inter.css\">
+		<link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/@xz/fonts@1/serve/metropolis.min.css\">
+		<link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/@fontsource/righteous@4.5.7/index.min.css\">
 		<link rel=\"stylesheet\" type=\"text/css\" href=\"new.min.css\" />
 		<link rel=\"stylesheet\" type=\"text/css\" href=\"venuestyle.css\" />
 		<script type=\"text/javascript\">
@@ -34,7 +35,7 @@ function siteheader($title)
 }
 
 function sitefooter() {
-	echo "</div></body></html>";
+	echo "</main></body></html>";
 }
 
 function navbar($backurl) 
@@ -43,9 +44,10 @@ function navbar($backurl)
 		$backurl = index.php;
 	global $venueName;
 	global $screensize;
-	echo "<div class=navbar>
-	<span class=title>$venueName Songbook</span>
-	</div><div class=mainbody><span class=backbtn><a class=button href=\"$backurl\" class=navbar id=backlink>Back</a></span>";
+	echo "<header>
+		<h1>$venueName Songbook</h1>
+		<nav><a href=\"$backurl\">Back</a></nav>
+	</header><main>";
 }
 
 function setAccepting($accepting)
