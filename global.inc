@@ -21,8 +21,6 @@ function siteheader($title)
 	<head>
 		<meta charset=\"UTF-8\">
 		<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">
-		<link href='https://fonts.googleapis.com/css?family=Audiowide' rel='stylesheet'>
-		<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
 		<title>$venueName Songbook</title>
 		<link rel=stylesheet type=\"text/css\" href=venuestyle.css />
 		<script type=\"text/javascript\">
