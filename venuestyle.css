@@ -5,7 +5,7 @@
   --nc-font-sans: Metropolis, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   --nc-font-brand: Righteous, Metropolis, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   --nc-tx-1: #ffffff;
-  --nc-tx-2: #eeeeee;
+  --nc-tx-2: #cfc9c9;
   --nc-bg-1: #000000;
   --nc-bg-2: #111111;
   --nc-bg-3: #222222;
@@ -20,7 +20,7 @@
 @media (prefers-color-scheme:dark) {
   :root {
     --nc-tx-1: #ffffff;
-    --nc-tx-2: #eeeeee;
+    --nc-tx-2: #cfc9c9;
     --nc-bg-1: #000000;
     --nc-bg-2: #111111;
     --nc-bg-3: #222222;
@@ -32,8 +32,96 @@
   }
 }
 
-/* Header brand font */
-header h1 {
+/* Base body font size */
+body {
+  font-size: 1.2rem;
+  color: var(--nc-tx-2);
+}
+
+/* Header & brand font */
+header {
+  padding: 2rem 1.5rem 1.5rem 1.5rem;
+}
+header > h1 {
   font-family: var(--nc-font-brand);
   color: var(--nc-lk-2);
+}
+header > nav {
+  font-weight: 700;
+}
+
+/* Search layout */
+form {
+  display: grid;
+  gap: 0.33rem 1rem;
+  grid-template-rows: auto auto;
+  grid-template-columns: auto min-content;
+}
+form > label {
+  grid-row: 1 / 2;
+  grid-column: 1 / 3;
+  font-weight: 700;
+}
+@media only screen and (max-width: 576px) {
+  form {
+    grid-template-rows: auto auto auto;
+    grid-template-columns: auto;
+  }
+  form > label {
+    grid-row: 1 / 2;
+    grid-column: 1 / 2;
+  }
+}
+
+/* Custom input styling */
+input,
+select,
+textarea {
+  border: 2px solid var(--nc-bg-3);
+  padding: 0.7rem 0.9rem 0.6rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: none;
+  border: 2px solid var(--nc-lk-2);
+  box-shadow: 0 0 8px var(--nc-lk-2);
+}
+
+/* Custom button styling */
+a button,
+button,
+input[type=button],
+input[type=reset],
+input[type=submit] {
+  border: 2px solid var(--nc-lk-1);
+  padding: 0.7rem 0.9rem 0.6rem;
+  background: var(--nc-bg-3);
+  color: var(--nc-lk-1);
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+.button:focus,
+.button:hover,
+button:focus,
+button:hover,
+input[type=button]:focus,
+input[type=button]:hover,
+input[type=reset]:focus,
+input[type=reset]:hover,
+input[type=submit]:focus,
+input[type=submit]:hover {
+  background: var(--nc-bg-3);
+  color: var(--nc-lk-2);
+  border: 2px solid var(--nc-lk-2);
+}
+
+/* Hints details text */
+details p {
+  font-size: smaller;
+}
+details p:not(:last-child) {
+  margin-bottom: 0.75rem;
 }

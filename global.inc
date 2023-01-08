@@ -88,9 +88,16 @@ function searchform()
 	{
 		global $url_name;
 		global $screensize;
-		echo "<br><p><form method=get action=search.php>Song search: <input type=text name=q autofocus autocomplete=off><input type=submit value=Search></form></p>";
-		echo '<p class=info>You may enter any part of the artist and/or title of the song.  Partial words are allowed.</p>
-			<p class=info>For example "pai bla stone" would match "Rolling Stones, The - Paint it black".</p>';
+		echo '<form method="get" action="search.php">
+			<label>Song search</label>
+			<input type="text" name="q" autofocus autocomplete="off">
+			<input type="submit" value="Search">
+		</form>';
+		echo '<details open>
+			<summary>Hints</summary>
+			<p>You may enter any part of the artist and/or title of the song.  Partial words are allowed.</p>
+			<p>For example "pai bla stone" would match "Rolling Stones, The - Paint it black".</p>
+		</details>';
 	}
 }
 
