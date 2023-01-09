@@ -25,6 +25,7 @@ function siteheader($title)
     <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/@fontsource/righteous@4.5.7/index.min.css\">
     <link rel=\"stylesheet\" type=\"text/css\" href=\"new.min.css\" />
     <link rel=\"stylesheet\" type=\"text/css\" href=\"venuestyle.css\" />
+    <script src=\"https://cdn.jsdelivr.net/npm/htmx.org@1.8.4/dist/htmx.min.js\" integrity=\"sha256-33LtsUGhZXiUWgNWyKajcjkBUlGWIHFjm5mwGEaR7R0=\" crossorigin=\"anonymous\"></script>
     <script type=\"text/javascript\">
           function submitreq(varid){
               window.location = \"./submitreq.php?id=\" + varid;
