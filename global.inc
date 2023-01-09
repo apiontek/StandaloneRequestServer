@@ -21,7 +21,7 @@ function siteheader($title)
     <meta charset=\"UTF-8\">
     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">
     <title>$venueName Songbook</title>
-    <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/@xz/fonts@1/serve/metropolis.min.css\">
+    <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/@xz/fonts@1.0.2/serve/metropolis.min.css\">
     <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/@fontsource/righteous@4.5.7/index.min.css\">
     <link rel=\"stylesheet\" type=\"text/css\" href=\"new.min.css\" />
     <link rel=\"stylesheet\" type=\"text/css\" href=\"venuestyle.css\" />
