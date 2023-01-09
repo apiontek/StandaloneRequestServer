@@ -14,7 +14,8 @@
   --nc-lk-2: #C84630;
   --nc-lk-tx: #FFFFFF;
   --nc-ac-1: #7928CA;
-  --nc-ac-tx: #FFFFFF
+  --nc-ac-tx: #FFFFFF;
+  --nc-brd-rad: 6px;
 }
 
 /* Use same colors if user prefers-color-scheme dark  */
@@ -29,7 +30,7 @@
     --nc-lk-2: #C84630;
     --nc-lk-tx: #FFFFFF;
     --nc-ac-1: #7928CA;
-    --nc-ac-tx: #FFFFFF
+    --nc-ac-tx: #FFFFFF;
   }
 }
 
@@ -80,7 +81,7 @@ input,
 select,
 textarea {
   border: 2px solid var(--nc-bg-3);
-  border-radius: 0;
+  border-radius: var(--nc-brd-rad);
   padding: 0.7rem 0.9rem 0.6rem;
   font-size: 1.2rem;
   font-weight: 700;
@@ -100,7 +101,7 @@ input[type=button],
 input[type=reset],
 input[type=submit] {
   border: 2px solid var(--nc-lk-1);
-  border-radius: 0;
+  border-radius: var(--nc-brd-rad);
   padding: 0.7rem 0.9rem 0.6rem;
   background: var(--nc-bg-3);
   color: var(--nc-lk-1);
@@ -138,5 +139,5 @@ button.result {
   margin-bottom: 1rem;
   text-align: left;
   text-transform: uppercase;
-  border-radius: 0;
+  border-radius: var(--nc-brd-rad);
 }
