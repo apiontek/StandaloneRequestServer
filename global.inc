@@ -16,7 +16,6 @@ if (isset($_SERVER['REFERER'])) $referer = $_SERVER['REFERER'];
 function siteheader($title) 
 {
 	global $venueName;
-	global $screensize;
 	echo "<html>
 	<head>
 		<meta charset=\"UTF-8\">
@@ -43,7 +42,6 @@ function navbar($backurl)
 	if ($backurl == "")
 		$backurl = index.php;
 	global $venueName;
-	global $screensize;
 	echo "<header>
 		<h1>$venueName Songbook</h1>
 		<nav><a href=\"$backurl\">Back</a></nav>
@@ -87,7 +85,6 @@ function searchform()
 	else
 	{
 		global $url_name;
-		global $screensize;
 		echo '<form method="get" action="search.php">
 			<label>Song search</label>
 			<input type="text" name="q" autofocus autocomplete="off">
