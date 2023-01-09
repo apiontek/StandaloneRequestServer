@@ -3,37 +3,34 @@ include('global.inc');
 siteheader('Search Results');
 navbar("index.php");
 
-if ($_GET['q'] == '') {
-        echo "<p>You must enter at least one search term</p>";
-        die();
+// Reduce multiple spaces to single spaces, and trim start & end whitespace
+$input_query = trim(preg_replace('!\s+!', ' ', $_GET['q']));
+
+// Validate that query is not just whitespace, and is 3 or more characters
+if (ctype_space($input_query) || strlen($input_query) < 3) {
+  echo "<p>You must enter at least 3 characters as a search query.</p>";
+  die();
 }
 
-if (strlen($_GET['q']) < 3)
-{
-	echo '<p>Your search string was too short, please try again</p>';
-	die();
-}
+echo '<p><strong>Search Results</strong></p><p>Tap a song to request it.</p>';
 
-echo '<br><p>Search Results<br>Tap a song to submit it</p>';
-
-$terms = explode(' ',$_GET['q']);
+$terms = explode(' ',$input_query);
 $no = count($terms);
 $wherestring = '';
 if ($no == 1) {
 	$wherestring = "WHERE (combined LIKE \"%" . $terms[0] . "%\")";
 } elseif ($no >= 2) {
-        foreach ($terms as $i => $term) {
-            if ($i == 0) {
-                $wherestring .= "WHERE ((combined LIKE \"%" . $term . "%\")";
-            }
-            if (($i > 0) && ($i < $no - 1)) {
-                $wherestring .= " AND (combined LIKE \"%" . $term . "%\")";
-            }
-            if ($i == $no - 1) {
-                $wherestring .= " AND (combined LIKE \"%" . $term . "%\") AND(artist != 'DELETED'))";
-            }
-        }
-
+  foreach ($terms as $i => $term) {
+    if ($i == 0) {
+      $wherestring .= "WHERE ((combined LIKE \"%" . $term . "%\")";
+    }
+    if (($i > 0) && ($i < $no - 1)) {
+      $wherestring .= " AND (combined LIKE \"%" . $term . "%\")";
+    }
+    if ($i == $no - 1) {
+      $wherestring .= " AND (combined LIKE \"%" . $term . "%\") AND(artist != 'DELETED'))";
+    }
+  }
 } else {
 	echo "<li>You must enter at least one search term</li>";
 	die();

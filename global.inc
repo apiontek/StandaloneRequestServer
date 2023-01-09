@@ -94,9 +94,10 @@ function searchform()
 			<input type="submit" value="Search">
 		</form>';
 		echo '<details open>
-			<summary>Hints</summary>
-			<p>You may enter any part of the artist and/or title of the song.  Partial words are allowed.</p>
-			<p>For example "pai bla stone" would match "Rolling Stones, The - Paint it black".</p>
+			<summary>Instructions</summary>
+      <p>Enter at least 3 characters (letters/numbers) as a search query.</p>
+      <p>You may enter any part of the artist and/or title of the song, and partial words are allowed.</p>
+      <p>For example, "pai bla stone" would match "Rolling Stones, The - Paint it black".</p>
 		</details>';
 	}
 }
