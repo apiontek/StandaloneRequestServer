@@ -42,10 +42,9 @@ function navbar($backurl)
 	if ($backurl == "")
 		$backurl = index.php;
 	global $venueName;
-	echo "<header>
-		<h1>$venueName Songbook</h1>
-		<nav><a href=\"$backurl\">Back</a></nav>
-	</header><main>";
+	echo "<header><h1>$venueName Songbook</h1>";
+  if ($_SERVER['REQUEST_URI'] != "/index.php" && $_SERVER['REQUEST_URI'] != "/") echo "<nav><a href=\"$backurl\">Back</a></nav>";
+	echo "</header><main>";
 }
 
 function setAccepting($accepting)
