@@ -4,9 +4,9 @@ siteheader('Submit Request');
 $referer = $_SERVER['HTTP_REFERER'];
 if (strpos($referer,'submitreq-run.php') !== false)
 {
-	navbar("index.php");
+  navbar("index.php");
 } else {
-	navbar($referer);
+  navbar($referer);
 }
 $songid = $_GET['id'];
 
