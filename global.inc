@@ -15,105 +15,95 @@ $requeststable = "requests";
 if (isset($_SERVER['REFERER'])) $referer = $_SERVER['REFERER']; 
 function siteheader($title) 
 {
-	global $venueName;
-	global $screensize;
-	echo "<html>
-	<head>
-		<meta charset=\"utf-8\">
-		<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">
-		<title>$venueName Songbook</title>
-		<link rel=stylesheet type=\"text/css\" href=simple.min.css />
-		<link rel=stylesheet type=\"text/css\" href=venuestyle.css />
-		<script type=\"text/javascript\">
-    			function submitreq(varid){
-        			window.location = \"./submitreq.php?id=\" + varid;
-    			}
-		</script>
-	</head><body>";
+  global $venueName;
+  echo "<html>
+  <head>
+    <meta charset=\"UTF-8\">
+    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">
+    <title>$venueName Songbook</title>
+    <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/@xz/fonts@1.0.2/serve/metropolis.min.css\">
+    <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/@fontsource/righteous@4.5.7/index.min.css\">
+    <link rel=\"stylesheet\" type=\"text/css\" href=\"new.min.css\" />
+    <link rel=\"stylesheet\" type=\"text/css\" href=\"venuestyle.css\" />
+    <script type=\"text/javascript\">
+          function submitreq(varid){
+              window.location = \"./submitreq.php?id=\" + varid;
+          }
+    </script>
+        </head><body>";
 }
 
 function sitefooter() {
-	echo "</main></body></html>";
+  echo "</main></body></html>";
 }
 
 function navbar($backurl) 
 {
-	if ($backurl == "")
-		$backurl = index.php;
-	global $venueName;
-	global $screensize;
-	echo "<header>
-	<h1>$venueName Songbook</h1>
-	<nav><a href=\"$backurl\">Back</a></nav>
-	</header><main>";
+  if ($backurl == "")
+    $backurl = index.php;
+  global $venueName;
+  echo "<header><h1>$venueName Songbook</h1>";
+  if ($_SERVER['REQUEST_URI'] != "/index.php" && $_SERVER['REQUEST_URI'] != "/") echo "<nav><a href=\"$backurl\">Back</a></nav>";
+  echo "</header><main>";
 }
 
 function setAccepting($accepting)
 {
-	global $db;
-	if ($accepting == 1)
-	{
-		echo("setting accepting to 1");
-		$db->exec("UPDATE state SET accepting=1");
-	}
-	else
-	{
-		echo("setting accepting to 0");
-		$db->exec("UPDATE state SET accepting=0");
-	}
+  global $db;
+  if ($accepting == 1)
+  {
+    echo("setting accepting to 1");
+    $db->exec("UPDATE state SET accepting=1");
+  }
+  else
+  {
+    echo("setting accepting to 0");
+    $db->exec("UPDATE state SET accepting=0");
+  }
 }
 
 function getAccepting()
 {
-	global $db;
-	$accepting = false;
+  global $db;
+  $accepting = false;
         foreach ($db->query("SELECT accepting FROM state LIMIT 1") as $row)
         {
                 $accepting = $row['accepting'];
         }
-	return $accepting;
+  return $accepting;
 }
 
 function searchform() 
 {
-	global $db;
-	global $venue_id;
-	if (!getAccepting())
-	{
-		echo "<br><br><h2>Sorry, requests are not being accepted at this time</h2>";
-	}
-	else
-	{
-		global $url_name;
-		global $screensize;
-		echo '<form method="get" action="search.php">
-			<p>
-				<label><strong>Song search</strong></label>
-				<input type="text" name="q" autofocus autocomplete="off">
-			</p>
-			<p><input type="submit" value="Search"></p>
-		</form>';
-		echo '<details open>
-			<summary>Hints</summary>
-			<small>
-			<p>You may enter any part of the artist and/or title of the song.  Partial words are allowed.</p>
-			<p>For example "pai bla stone" would match "Rolling Stones, The - Paint it black".</p>
-			</small>
-		</details>';
-	}
+  echo '<form method="get" action="search.php">
+    <label>Song search</label>
+    <input type="text" name="q" autofocus autocomplete="off">
+    <input type="submit" value="Search">
+  </form>';
+  echo '<details open>
+    <summary>Instructions</summary>
+    <p>Enter at least 3 characters (letters/numbers) as a search query.</p>
+    <p>You may enter any part of the artist and/or title of the song, and partial words are allowed.</p>
+    <p>For example, "pai bla stone" would match "Rolling Stones, The - Paint it black".</p>
+  </details>';
+  if (!getAccepting())
+    echo '<details open>
+      <summary>Requests closed</summary>
+      <p>You will not be able to request songs at this time.</p>
+    </details>';
 }
 
 
 
 function getSerial()
 {
-	global $db;
-	$serial = -1;
-	foreach ($db->query("SELECT serial FROM state LIMIT 1") as $row)
+  global $db;
+  $serial = -1;
+  foreach ($db->query("SELECT serial FROM state LIMIT 1") as $row)
         {
-        	$serial = (int)$row['serial'];
+          $serial = (int)$row['serial'];
         }
-	return $serial;
+  return $serial;
 }
 
 function newSerial()
@@ -131,30 +121,30 @@ function newSerial()
 
 function getVenue()
 {
-	// We don't really do multiple venues in standalone, just fake it
+  // We don't really do multiple venues in standalone, just fake it
         global $db;
-	global $venueName;
+  global $venueName;
         $serial = -1;
-	$venue = array();
-	$venue['venue_id'] = $venue_id;
+  $venue = array();
+  $venue['venue_id'] = $venue_id;
         $venue['accepting'] = getAccepting();
-	$venue['name'] = $venueName;
-	$venue['url_name'] = "none";
-	return $venue;
+  $venue['name'] = $venueName;
+  $venue['url_name'] = "none";
+  return $venue;
 }
 
 function getVenues()
 {
-	// We don't really do multiple venues in standalone, just fake it
-	global $db;
-	global $venueName;
-	$venues = array();
-	$venue['venue_id'] = 0;
+  // We don't really do multiple venues in standalone, just fake it
+  global $db;
+  global $venueName;
+  $venues = array();
+  $venue['venue_id'] = 0;
         $venue['accepting'] = getAccepting();
         $venue['name'] = $venueName;
-	$venue['url_name'] = "none";
-	$venues['venues'][] = $venue;
-	return $venues;
+  $venue['url_name'] = "none";
+  $venues['venues'][] = $venue;
+  return $venues;
 }
 
 function getRequests()
@@ -162,18 +152,18 @@ function getRequests()
         global $db;
         $requests = array();
         $result = $db->query("SELECT request_id,artist,title,singer,strftime('%s', request_time) AS unixtime FROM requests");
-	if ($result)
-	{
-        	foreach ($result as $row)
-        	{
-        	        $request['request_id'] = (int)$row['request_id'];
-        	        $request['artist'] = $row['artist'];
-        	        $request['title'] = $row['title'];
-        	        $request['singer'] = $row['singer'];
-        	        $request['request_time'] = (int)$row['unixtime'];
-        	        $requests['requests'][] = $request;
-        	}
-	}
+  if ($result)
+  {
+          foreach ($result as $row)
+          {
+                  $request['request_id'] = (int)$row['request_id'];
+                  $request['artist'] = $row['artist'];
+                  $request['title'] = $row['title'];
+                  $request['singer'] = $row['singer'];
+                  $request['request_time'] = (int)$row['unixtime'];
+                  $requests['requests'][] = $request;
+          }
+  }
         return $requests;
 }
 

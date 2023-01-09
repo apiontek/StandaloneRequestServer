@@ -3,70 +3,73 @@ include('global.inc');
 siteheader('Search Results');
 navbar("index.php");
 
-$minSearchChars = 3;
+// Reduce multiple spaces to single spaces, and trim start & end whitespace
+$input_query = trim(preg_replace('!\s+!', ' ', $_GET['q']));
 
-if ($_GET['q'] == '') {
-        echo "<p><strong>Your search query was empty. Please try again.</strong></p>
-          <p>You must enter at least $minSearchChars letters/numbers as a search query.</p>";
-        die();
+// Validate that query is not just whitespace, and is 3 or more characters
+if (ctype_space($input_query) || strlen($input_query) < 3) {
+  echo "<p>You must enter at least 3 characters as a search query.</p>";
+  die();
 }
 
-if (strlen($_GET['q']) < 3)
-{
-  echo "<p><strong>Your search query was too short. Please try again.</strong></p>
-    <p>You must enter at least $minSearchChars letters/numbers as a search query.</p>";
-	die();
-}
-
-echo '<p><strong>Search Results</strong></p><p>Tap a song to submit it</p>';
-
-$terms = explode(' ',$_GET['q']);
+$terms = explode(' ',$input_query);
 $no = count($terms);
 $wherestring = '';
 if ($no == 1) {
-	$wherestring = "WHERE (combined LIKE \"%" . $terms[0] . "%\")";
+  $wherestring = "WHERE (combined LIKE \"%" . $terms[0] . "%\")";
 } elseif ($no >= 2) {
-        foreach ($terms as $i => $term) {
-            if ($i == 0) {
-                $wherestring .= "WHERE ((combined LIKE \"%" . $term . "%\")";
-            }
-            if (($i > 0) && ($i < $no - 1)) {
-                $wherestring .= " AND (combined LIKE \"%" . $term . "%\")";
-            }
-            if ($i == $no - 1) {
-                $wherestring .= " AND (combined LIKE \"%" . $term . "%\") AND(artist != 'DELETED'))";
-            }
-        }
-
+  foreach ($terms as $i => $term) {
+    if ($i == 0) {
+      $wherestring .= "WHERE ((combined LIKE \"%" . $term . "%\")";
+    }
+    if (($i > 0) && ($i < $no - 1)) {
+      $wherestring .= " AND (combined LIKE \"%" . $term . "%\")";
+    }
+    if ($i == $no - 1) {
+      $wherestring .= " AND (combined LIKE \"%" . $term . "%\") AND(artist != 'DELETED'))";
+    }
+  }
 } else {
-	echo "<li>You must enter at least one search term</li>";
-	die();
+  echo "<li>You must enter at least one search term</li>";
+  die();
 }
 
+$accepting = getAccepting();
 $entries = null;
 $res = array();
     $sql = "SELECT song_id,artist,title,combined FROM songdb $wherestring ORDER BY UPPER(artist), UPPER(title)";
     foreach ($db->query($sql) as $row)
         {
-	if ((stripos($row['combined'],'wvocal') === false) && (stripos($row['combined'],'w-vocal') === false) && (stripos($row['combined'],'vocals') === false)) {
-		$res[$row['song_id']] = $row['artist'] . " - " . $row['title'];
-	}
+  if ((stripos($row['combined'],'wvocal') === false) && (stripos($row['combined'],'w-vocal') === false) && (stripos($row['combined'],'vocals') === false)) {
+    $res[$row['song_id']] = $row['artist'] . " - " . $row['title'];
+  }
         }
     $db = null;
 
 $unique = array_unique($res);
 
 foreach ($unique as $key => $val) {
-	$entries[] = "<tr><td class=result onclick=\"submitreq(${key})\">" . $val . "</td></tr>";
+  if ($accepting) {
+    $entries[] = "<button class=\"result song\" onclick=\"submitreq(${key})\">" . $val . "</button>";
+  } else {
+    $entries[] = "<button class=\"result song\">" . $val . "</button>";
+  }
 }
+
+echo "<p><strong>Search Results for \"$input_query\"</strong>";
+
 if (count($unique) > 0) {
-	echo '<table border=1>';
-	foreach ($entries as $song) {
-		echo $song;
-	}
-	echo '</table>';
+  if ($accepting) {
+    echo '<br/>Tap a song to request it.</p><div>';
+  } else {
+    echo '</p><div class="not-accepting">';
+  }
+  foreach ($entries as $song) {
+    echo $song;
+  }
+  echo '</div>';
 } else {
-	echo "<p>Sorry, no match found.</p>";
+  echo "</p><p>Sorry, no match found.</p>";
 }
 
 sitefooter();
