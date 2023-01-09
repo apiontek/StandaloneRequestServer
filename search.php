@@ -12,7 +12,7 @@ if (ctype_space($input_query) || strlen($input_query) < 3) {
   die();
 }
 
-echo '<p><strong>Search Results</strong></p><p>Tap a song to request it.</p>';
+echo "<p><strong>Search Results for \"$input_query\"</strong><br/>Tap a song to request it.</p>";
 
 $terms = explode(' ',$input_query);
 $no = count($terms);
@@ -50,14 +50,14 @@ $res = array();
 $unique = array_unique($res);
 
 foreach ($unique as $key => $val) {
-	$entries[] = "<tr><td class=result onclick=\"submitreq(${key})\">" . $val . "</td></tr>";
+	$entries[] = "<button class=\"result\" onclick=\"submitreq(${key})\">" . $val . "</button>";
 }
 if (count($unique) > 0) {
-	echo '<table border=1>';
+	echo '';
 	foreach ($entries as $song) {
 		echo $song;
 	}
-	echo '</table>';
+	echo '';
 } else {
 	echo "<p>Sorry, no match found.</p>";
 }
