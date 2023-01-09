@@ -18,8 +18,15 @@ foreach ($db->query($sql) as $row) {
         $title = $row['title'];
 }
 $db = null;
-echo "<br><p>Submitting Song:<br>";
-echo "<p>$artist - $title</p>";
-echo "<form method=get action=submitreq-run.php><input type=hidden name=songid value=$songid>Please enter your name or nickname:<br><input type=text name=singer autocomplete=off autofocus><input type=submit></form>";
-echo "<p class=info>If you have a common first name, please also enter your last initial or last name.<br>Doing so will help eliminate confusion and reduce the risk of your turn getting skipped.";
+echo "<p><strong>Requesting song:</strong><br/><span class=\"song\">$artist - $title</span></p>";
+echo "<form method=\"get\" action=\"submitreq-run.php\">
+  <input type=\"hidden\" name=\"songid\" value=\"$songid\">
+  <label>Enter your name or nickname</label>
+  <input type=\"text\" name=\"singer\" autocomplete=\"off\" autofocus>
+  <input type=\"submit\" value=\"Submit Request\">
+  </form>";
+echo "<details open>
+    <summary>Instructions</summary>
+    <p>If you have a common first name, please also enter your last initial or last name. Doing so will help eliminate confusion and reduce the risk of your turn getting skipped.</p>
+  </details>";
 ?>

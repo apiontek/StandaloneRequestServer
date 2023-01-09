@@ -26,9 +26,10 @@ foreach ($db->query($sql) as $row) {
 $stmt = $db->prepare("INSERT INTO requests (singer,artist,title) VALUES(:singer, :artist, :title)");
 $stmt->execute(array(":singer" => $singer, ":artist" => $artist, ":title" => $title));
 newSerial();
-echo "<p>Song: $artist - $title</p>
-      <p>Submitted for singer: $singer</p>
-	<br><p>Please press back to return to the main screen</p>
+echo "<p><strong>Song request submitted:</strong></p>
+  <dl class=\"confirm\"><dt>Song:</dt><dd class=\"song\">$artist - $title</dd>
+  <dt>Singer:</dt><dd>$singer</dd></dl>
+	<p><a href=\"index.php\"><button>Return to Search</button></a></p>
 ";
 
 sitefooter();

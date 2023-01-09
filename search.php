@@ -48,7 +48,7 @@ $res = array();
 $unique = array_unique($res);
 
 foreach ($unique as $key => $val) {
-	$entries[] = "<button class=\"result\" onclick=\"submitreq(${key})\">" . $val . "</button>";
+	$entries[] = "<button class=\"result song\" onclick=\"submitreq(${key})\">" . $val . "</button>";
 }
 
 echo "<p><strong>Search Results for \"$input_query\"</strong>";

@@ -132,12 +132,21 @@ details p:not(:last-child) {
 }
 
 
+/* always uppercase songs */
+.song {
+  text-transform: uppercase;
+}
+
 /* search results */
 button.result {
   white-space: inherit;
   width: 100%;
   margin-bottom: 1rem;
   text-align: left;
-  text-transform: uppercase;
   border-radius: var(--nc-brd-rad);
+}
+
+/* request confirmation */
+dl.confirm {
+  margin: 1rem 0 2rem 2rem;
 }
