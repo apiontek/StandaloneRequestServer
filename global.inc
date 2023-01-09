@@ -80,6 +80,15 @@ function searchform()
     <input type="text" name="q" autofocus autocomplete="off">
     <input type="submit" value="Search">
   </form>';
+  echo '<div id="data-target">';
+  helpHints();
+  echo '</div>';
+}
+
+
+
+function helpHints()
+{
   echo '<details open>
     <summary>Instructions</summary>
     <p>Enter at least 3 characters (letters/numbers) as a search query.</p>
