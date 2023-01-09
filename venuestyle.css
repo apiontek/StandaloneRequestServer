@@ -99,7 +99,9 @@ a button,
 button,
 input[type=button],
 input[type=reset],
-input[type=submit] {
+input[type=submit],
+.not-accepting button:focus,
+.not-accepting button:hover {
   border: 2px solid var(--nc-lk-1);
   border-radius: var(--nc-brd-rad);
   padding: 0.7rem 0.9rem 0.6rem;
@@ -122,6 +124,10 @@ input[type=submit]:hover {
   color: var(--nc-lk-2);
   border: 2px solid var(--nc-lk-2);
 }
+.not-accepting button {
+  cursor: default;
+}
+
 
 /* Hints details text */
 details p {

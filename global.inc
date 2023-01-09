@@ -75,27 +75,22 @@ function getAccepting()
 
 function searchform() 
 {
-  global $db;
-  global $venue_id;
+  echo '<form method="get" action="search.php">
+    <label>Song search</label>
+    <input type="text" name="q" autofocus autocomplete="off">
+    <input type="submit" value="Search">
+  </form>';
+  echo '<details open>
+    <summary>Instructions</summary>
+    <p>Enter at least 3 characters (letters/numbers) as a search query.</p>
+    <p>You may enter any part of the artist and/or title of the song, and partial words are allowed.</p>
+    <p>For example, "pai bla stone" would match "Rolling Stones, The - Paint it black".</p>
+  </details>';
   if (!getAccepting())
-  {
-    echo "<br><br><h2>Sorry, requests are not being accepted at this time</h2>";
-  }
-  else
-  {
-    global $url_name;
-    echo '<form method="get" action="search.php">
-      <label>Song search</label>
-      <input type="text" name="q" autofocus autocomplete="off">
-      <input type="submit" value="Search">
-    </form>';
     echo '<details open>
-      <summary>Instructions</summary>
-      <p>Enter at least 3 characters (letters/numbers) as a search query.</p>
-      <p>You may enter any part of the artist and/or title of the song, and partial words are allowed.</p>
-      <p>For example, "pai bla stone" would match "Rolling Stones, The - Paint it black".</p>
+      <summary>Requests closed</summary>
+      <p>You will not be able to request songs at this time.</p>
     </details>';
-  }
 }
 
 

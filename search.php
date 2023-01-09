@@ -34,6 +34,7 @@ if ($no == 1) {
   die();
 }
 
+$accepting = getAccepting();
 $entries = null;
 $res = array();
     $sql = "SELECT song_id,artist,title,combined FROM songdb $wherestring ORDER BY UPPER(artist), UPPER(title)";
@@ -48,16 +49,25 @@ $res = array();
 $unique = array_unique($res);
 
 foreach ($unique as $key => $val) {
-  $entries[] = "<button class=\"result song\" onclick=\"submitreq(${key})\">" . $val . "</button>";
+  if ($accepting) {
+    $entries[] = "<button class=\"result song\" onclick=\"submitreq(${key})\">" . $val . "</button>";
+  } else {
+    $entries[] = "<button class=\"result song\">" . $val . "</button>";
+  }
 }
 
 echo "<p><strong>Search Results for \"$input_query\"</strong>";
 
 if (count($unique) > 0) {
-  echo '<br/>Tap a song to request it.</p>';
+  if ($accepting) {
+    echo '<br/>Tap a song to request it.</p><div>';
+  } else {
+    echo '</p><div class="not-accepting">';
+  }
   foreach ($entries as $song) {
     echo $song;
   }
+  echo '</div>';
 } else {
   echo "</p><p>Sorry, no match found.</p>";
 }
