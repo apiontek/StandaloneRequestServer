@@ -23,9 +23,30 @@ function siteheader()
     <title>$venueName Songbook</title>
     <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/@xz/fonts@1.0.2/serve/metropolis.min.css\">
     <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/@fontsource/righteous@4.5.7/index.min.css\">
-    <link rel=\"stylesheet\" type=\"text/css\" href=\"css/main.min.css\" />
-    <script type=\"text/javascript\" src=\"js/htmx.min.js\"></script>
-    <script type=\"text/javascript\" src=\"js/main.js\"></script>
+
+    <!--
+      link tags for using un-optimized css style assets
+      to use, uncomment, and comment out the optimized style.min.css link tag below
+    -->
+    <!--  <link rel=\"stylesheet\" type=\"text/css\" href=\"css/new.css\" />        -->
+    <!--  <link rel=\"stylesheet\" type=\"text/css\" href=\"css/venuestyle.css\" /> -->
+    <!--
+      optimized css style sheet
+      comment out if using un-optimized css style assets above
+    -->
+    <link rel=\"stylesheet\" type=\"text/css\" href=\"css/style.min.css\" />
+
+    <!--
+      script tags for using un-optimized js script assets
+      to use, uncomment, and comment out the optimized script.min.js script tag below
+    -->
+    <!-- <script type=\"text/javascript\" src=\"js/htmx.min.js\"></script>  -->
+    <!-- <script type=\"text/javascript\" src=\"js/script.js\"></script>    -->
+    <!--
+      optimized js script
+      comment out if using un-optimized js script assets above
+    -->
+    <script type=\"text/javascript\" src=\"js/script.min.js\"></script>
   </head><body>";
 }
 

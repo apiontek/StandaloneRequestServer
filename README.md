@@ -44,6 +44,23 @@ NOTE: Standalone Request Server ignores any API key specified in the OpenKJ, so 
 
 A docker compose file is provided for development. Your db dir (by default `./okjweb`) must have group ownership set to `www-data`
 
+### Assets (js & css)
+
+Because I like needlessly optimizing things, the css & js assets are optimized to `css/style.min.css` and `js/script.min.js`.
+
+If you want to make changes, you have two options:
+
+#### 1. Use the un-optimized versions
+
+You can modify the siteheader in `global.inc` to comment out the optimized asset tags and uncomment the un-optimized asset tags. Then just modify `css/venuestyle.css` to suit your style. (You probably don't need to modify `js/script.js`, and if you don't want to, you can keep using the optimized version in `global.inc`)
+
+#### 2. Use node tools
+
+You can do an `npm i` in the project root to install the required node dependencies, and then run any of these:
+
+- `npm run buildcss`: builds new optimized `css/style.min.css`
+- `npm run buildjs`: builds new optimized `js/script.min.js`
+
 ### CSS
 
 I like optimizing things, and doing some CSS optimizing was easy, so the CSS used in `global.inc` is now `css/main.min.css`, optimized using [clean-css-cli](https://github.com/clean-css/clean-css-cli).
