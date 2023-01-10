@@ -37,14 +37,14 @@ if ($no == 1) {
 $accepting = getAccepting();
 $entries = null;
 $res = array();
-    $sql = "SELECT song_id,artist,title,combined FROM songdb $wherestring ORDER BY UPPER(artist), UPPER(title)";
-    foreach ($db->query($sql) as $row)
-        {
+$sql = "SELECT song_id,artist,title,combined FROM songdb $wherestring ORDER BY UPPER(artist), UPPER(title)";
+foreach ($db->query($sql) as $row)
+{
   if ((stripos($row['combined'],'wvocal') === false) && (stripos($row['combined'],'w-vocal') === false) && (stripos($row['combined'],'vocals') === false)) {
     $res[$row['song_id']] = $row['artist'] . " - " . $row['title'];
   }
-        }
-    $db = null;
+}
+$db = null;
 
 $unique = array_unique($res);
 
