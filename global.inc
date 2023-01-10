@@ -26,23 +26,7 @@ function siteheader($title)
     <link rel=\"stylesheet\" type=\"text/css\" href=\"css/new.min.css\" />
     <link rel=\"stylesheet\" type=\"text/css\" href=\"css/venuestyle.css\" />
     <script type=\"text/javascript\" src=\"js/htmx.min.js\"></script>
-    <script type=\"text/javascript\">
-      function submitreq(varid){
-        window.location = \"./submitreq.php?id=\" + varid;
-      }
-      function removeModal() {
-        var modal = document.getElementById('modal');
-        if (modal) {
-          modal.addEventListener('animationend', () => {
-            modal.remove();
-          });
-          modal.classList.add('closing');
-        }
-      }
-      document.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape') { removeModal(); }
-      })
-    </script>
+    <script type=\"text/javascript\" src=\"js/main.js\"></script>
   </head><body>";
 }
 
