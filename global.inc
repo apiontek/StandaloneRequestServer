@@ -76,11 +76,11 @@ function getAccepting()
 
 function searchform() 
 {
-  echo '<form method="get" action="search.php">
-    <label>Song search</label>
-    <input type="text" name="q" autofocus autocomplete="off">
-    <input type="submit" value="Search">
-  </form>';
+  echo '<p><input type="search" name="q" autofocus autocomplete="off"
+      placeholder="Type here to search songs"
+      hx-post="/searchx.php"
+      hx-trigger="keyup changed delay:500ms, search" 
+      hx-target="#data-target"></p>';
   echo '<div id="data-target">';
   helpHints();
   echo '</div>';
