@@ -1,7 +1,7 @@
 <?php
 include("global.inc");
-siteheader("Home");
-navbar("index.php");
+siteheader();
+navbar();
 
 searchform();
 

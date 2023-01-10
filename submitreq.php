@@ -1,12 +1,12 @@
 <?php
 include('global.inc');
-siteheader('Submit Request');
+siteheader();
 $referer = $_SERVER['HTTP_REFERER'];
 if (strpos($referer,'submitreq-run.php') !== false)
 {
-  navbar("index.php");
+  navbar();
 } else {
-  navbar($referer);
+  navbar();
 }
 $songid = $_GET['id'];
 

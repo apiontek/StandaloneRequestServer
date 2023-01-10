@@ -1,14 +1,12 @@
-<?php 
+<?php
 include('global.inc');
-siteheader('Search Results');
-navbar("index.php");
 
 // Reduce multiple spaces to single spaces, and trim start & end whitespace
-$input_query = trim(preg_replace('!\s+!', ' ', $_GET['q']));
+$input_query = trim(preg_replace('!\s+!', ' ', $_POST['q']));
 
 // Validate that query is not just whitespace, and is 3 or more characters
 if (ctype_space($input_query) || strlen($input_query) < 3) {
-  echo "<p>You must enter at least 3 characters as a search query.</p>";
+  helpHints();
   die();
 }
 
@@ -30,7 +28,7 @@ if ($no == 1) {
     }
   }
 } else {
-  echo "<li>You must enter at least one search term</li>";
+  helpHints();
   die();
 }
 
@@ -50,7 +48,7 @@ $unique = array_unique($res);
 
 foreach ($unique as $key => $val) {
   if ($accepting) {
-    $entries[] = "<button class=\"result song\" onclick=\"submitreq(${key})\">" . $val . "</button>";
+    $entries[] = "<button class=\"result song\" hx-post=\"/req-modal.php\" hx-target=\"body\" hx-swap=\"beforeend\" hx-vals='{\"songid\":\"${key}\"}'>" . $val . "</button>";
   } else {
     $entries[] = "<button class=\"result song\">" . $val . "</button>";
   }
@@ -72,5 +70,4 @@ if (count($unique) > 0) {
   echo "</p><p>Sorry, no match found.</p>";
 }
 
-sitefooter();
 ?> 

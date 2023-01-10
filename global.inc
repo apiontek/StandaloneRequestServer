@@ -13,14 +13,14 @@ $songdbtable = "songdb";
 $requeststable = "requests";
 
 if (isset($_SERVER['REFERER'])) $referer = $_SERVER['REFERER']; 
-function siteheader($title) 
+function siteheader() 
 {
   global $venueName;
   echo "<html>
   <head>
     <meta charset=\"UTF-8\">
     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">
-    <title>$venueName Songbook &middot; $title</title>
+    <title>$venueName Songbook</title>
     <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/@xz/fonts@1.0.2/serve/metropolis.min.css\">
     <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/@fontsource/righteous@4.5.7/index.min.css\">
     <link rel=\"stylesheet\" type=\"text/css\" href=\"css/new.min.css\" />
@@ -34,14 +34,10 @@ function sitefooter() {
   echo "</main></body></html>";
 }
 
-function navbar($backurl) 
+function navbar()
 {
-  if ($backurl == "")
-    $backurl = index.php;
   global $venueName;
-  echo "<header><h1>$venueName Songbook</h1>";
-  if ($_SERVER['REQUEST_URI'] != "/index.php" && $_SERVER['REQUEST_URI'] != "/") echo "<nav><a href=\"$backurl\">Back</a></nav>";
-  echo "</header><main>";
+  echo "<header><h1>$venueName Songbook</h1></header><main>";
 }
 
 function setAccepting($accepting)
@@ -74,7 +70,7 @@ function searchform()
 {
   echo '<p><input type="search" name="q" autofocus autocomplete="off"
       placeholder="Type here to search songs"
-      hx-post="/searchx.php"
+      hx-post="/search.php"
       hx-trigger="keyup changed delay:500ms, search" 
       hx-target="#data-target"></p>';
   echo '<div id="data-target">';

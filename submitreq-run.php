@@ -1,19 +1,19 @@
 <?php 
 include('global.inc');
 #header("Refresh: 15; URL=");
-siteheader("Song Submitted");
+siteheader();
 
 
 
 $songid = $_GET['songid'];
 $singer = $_GET['singer'];
 if ($singer == '') {
-  navbar($_SERVER['HTTP_REFERER']);
+  navbar();
   echo "<p>Sorry, you must input a singer name.  Please go back and try again.</p>";
   die();
 
 }
-navbar("index.php");
+navbar();
 $entries = null;
 $wherestring = null;
 $artist = '';
