@@ -60,11 +60,5 @@ You can do an `npm i` in the project root to install the required node dependenc
 
 - `npm run buildcss`: builds new optimized `css/style.min.css`
 - `npm run buildjs`: builds new optimized `js/script.min.js`
-
-### CSS
-
-I like optimizing things, and doing some CSS optimizing was easy, so the CSS used in `global.inc` is now `css/main.min.css`, optimized using [clean-css-cli](https://github.com/clean-css/clean-css-cli).
-
-If you want to modify the styling, and can't use clean-css-cli, you can update the header to use `css/new.min.css` and `css/venuestyle.css`
-
-Otherwise, running the privded `watch-css.sh` will use clean-css-cli to watch `css/venuestyle.css` for CSS changes and rebuild, convenient for making changes on the fly during development. The provided `build-css.sh` will build a new optimized CSS for you without watching for more changes.
+- `npm run watchcss`: for live development, watches `css/venuestyle.css` and rebuilds `css/style.min.css` on changes
+- `npm run watchjs`: for live development, watches `js/script.js` and rebuilds `js/script.min.js` on changes
