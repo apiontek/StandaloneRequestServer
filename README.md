@@ -9,6 +9,7 @@ This began as a fork of the freely-provided *(thank you!)* original [OpenKJ Stan
 Enhancements & changes:
 
 - Search & song requests all handled in one page via active search & request modal dialog
+- Search allowed even when requests are closed, so people can search your songbook at any time
 - Search queries sanitized just a little more to reduce queries with excessive whitespace
 - Uses [new.css](https://newcss.net/) for a lightweight style base, dark mode enforced
 - Uses [htmx](https://htmx.org/) for the in-line active search & song request modal dialog
