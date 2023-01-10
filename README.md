@@ -46,8 +46,8 @@ A docker compose file is provided for development. Your db dir (by default `./ok
 
 ### CSS
 
-I like optimizing things, and doing some CSS optimizing was easy, so the CSS used in `global.inc` is now `css/main.min.css`
+I like optimizing things, and doing some CSS optimizing was easy, so the CSS used in `global.inc` is now `css/main.min.css`, optimized using [clean-css-cli](https://github.com/clean-css/clean-css-cli).
 
-If you make changes to `css/venuestyle.css` you can either rebuild the optimized CSS or update the header to use `css/new.min.css` and `css/venuestyle.css`
+If you want to modify the styling, and can't use clean-css-cli, you can update the header to use `css/new.min.css` and `css/venuestyle.css`
 
-If you can install [clean-css-cli](https://github.com/clean-css/clean-css-cli), then the provided `build-css.sh` will build a new optimized CSS for you.
+Otherwise, running the privded `watch-css.sh` will use clean-css-cli to watch `css/venuestyle.css` for CSS changes and rebuild, convenient for making changes on the fly during development. The provided `build-css.sh` will build a new optimized CSS for you without watching for more changes.
