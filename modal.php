@@ -6,7 +6,7 @@ include('global.inc');
 
 // echo $input_query;
 
-echo '<div id="modal" _="on closeModal add .closing then wait for animationend then remove me">
+echo '<div id="modal">
   <div class="modal-underlay" onClick="removeModal()"></div>
   <div class="modal-content">
     <h2>Modal Dialog</h2>
