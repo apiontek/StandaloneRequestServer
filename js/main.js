@@ -1,9 +1,3 @@
-// Original function for plain search.php results
-// allowing them to submit a song request to submitreq.php
-function submitreq(varid){
-  window.location = './submitreq.php?id=' + varid;
-}
-
 // new song request modal needs help closing
 function removeReqModal() {
   var reqModal = document.getElementById('req-modal');
