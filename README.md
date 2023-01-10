@@ -58,7 +58,9 @@ You can modify the siteheader in `global.inc` to comment out the optimized asset
 
 You can do an `npm i` in the project root to install the required node dependencies, and then run any of these:
 
-- `npm run buildcss`: builds new optimized `css/style.min.css`
-- `npm run buildjs`: builds new optimized `js/script.min.js`
-- `npm run watchcss`: for live development, watches `css/venuestyle.css` and rebuilds `css/style.min.css` on changes
-- `npm run watchjs`: for live development, watches `js/script.js` and rebuilds `js/script.min.js` on changes
+- `npm run dev`: starts watching both `css/venuestyle.css` & `js/script.js` for changes, rebuilding `css/style.min.css` & `js/script.min.js` as needed
+- `npm run build`: does a one-time production build of `css/style.min.css` & `js/script.min.js`
+- `npm run watch_css`: watch only `css/venuestyle.css`, rebuilding `css/style.min.css` as needed
+- `npm run watch_js`: watch only `js/script.js`, rebuilding `js/script.min.js` as needed
+- `npm run build_css`: does a one-time production build of `css/style.min.css`
+- `npm run build_js`: does a one-time production build of `js/script.min.js`
