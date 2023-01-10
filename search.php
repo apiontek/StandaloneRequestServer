@@ -54,7 +54,11 @@ foreach ($unique as $key => $val) {
   }
 }
 
-echo "<p><strong>Search Results for \"$input_query\"</strong>";
+$count = 0;
+if ($entries) $count = count($entries);
+$results_str = 'results';
+if ($count === 1) $results_str = 'result';
+echo "<p><strong>$count search $results_str for \"$input_query\"</strong>";
 
 if (count($unique) > 0) {
   if ($accepting) {
