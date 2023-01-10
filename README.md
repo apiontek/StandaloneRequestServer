@@ -2,7 +2,7 @@
 
 Standalone basic single-venue request server implementation for use with [OpenKJ](https://openkj.org/).
 
-This began as a fork of the freely-provided *(thank you!)* original [OpenKJ StandaloneRequestServer](https://github.com/OpenKJ/StandaloneRequestServer), last updated Dec 21, 2018 (as of when I forked it in Jan 2023).
+This began as a fork of the freely-provided *(thank you!)* original [OpenKJ StandaloneRequestServer](https://github.com/OpenKJ/StandaloneRequestServer), last updated Dec 21, 2018 (when I forked it in Jan 2023).
 
 ## What's new
 
