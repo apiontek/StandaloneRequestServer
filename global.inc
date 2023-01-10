@@ -23,8 +23,7 @@ function siteheader()
     <title>$venueName Songbook</title>
     <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/@xz/fonts@1.0.2/serve/metropolis.min.css\">
     <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/@fontsource/righteous@4.5.7/index.min.css\">
-    <link rel=\"stylesheet\" type=\"text/css\" href=\"css/new.min.css\" />
-    <link rel=\"stylesheet\" type=\"text/css\" href=\"css/venuestyle.css\" />
+    <link rel=\"stylesheet\" type=\"text/css\" href=\"css/main.min.css\" />
     <script type=\"text/javascript\" src=\"js/htmx.min.js\"></script>
     <script type=\"text/javascript\" src=\"js/main.js\"></script>
   </head><body>";

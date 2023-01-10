@@ -15,7 +15,7 @@ Enhancements & changes:
 - [htmx](https://htmx.org/) for active search & request modal
 - Fonts changed to my preferences, with a little extra CSS & JS as needed
 
-## Use & development
+## Usage
 
 I'll repeat what the original README said:
 
@@ -38,6 +38,16 @@ Example: If you were serving this from a web server as `http://10.0.0.1/requests
 
 NOTE: Standalone Request Server ignores any API key specified in the OpenKJ, so you can leave that blank.
 
-## Docker
+## Development
+
+### Docker
 
 A docker compose file is provided for development. Your db dir (by default `./okjweb`) must have group ownership set to `www-data`
+
+### CSS
+
+I like optimizing things, and doing some CSS optimizing was easy, so the CSS used in `global.inc` is now `css/main.min.css`
+
+If you make changes to `css/venuestyle.css` you can either rebuild the optimized CSS or update the header to use `css/new.min.css` and `css/venuestyle.css`
+
+If you can install [clean-css-cli](https://github.com/clean-css/clean-css-cli), then the provided `build-css.sh` will build a new optimized CSS for you.
