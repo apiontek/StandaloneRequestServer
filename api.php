@@ -16,20 +16,19 @@ if ($command == "venueExists")
   $venueUrlName = $data['venueUrlName'];
   $exists = venueExists($venueUrlName);
   $output = array('command'=>$command,'error'=>'false', 'exists'=>$exists);
-        print(json_encode($output,JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES));
-        exit();
-
+  print(json_encode($output,JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES));
+  exit();
 }
 
 if ($command == "venueAccepting")
 {
   if (getAccepting())
-          $output = array('command'=>$command,'accepting'=>true);
+    $output = array('command'=>$command,'accepting'=>true);
   else
     $output = array('command'=>$command,'accepting'=>false);
-        header('Content-type: application/json');
-        print(json_encode($output,JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES));
-        exit();
+    header('Content-type: application/json');
+    print(json_encode($output,JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES));
+    exit();
 }
 
 if ($command == "submitRequest")
@@ -38,14 +37,14 @@ if ($command == "submitRequest")
   $singerName = $data['singerName'];
   $sql = "SELECT artist,title FROM songdb WHERE song_id = $songId";
   foreach ($db->query($sql) as $row) {
-          $artist = $row['artist'];
-          $title = $row['title'];
+    $artist = $row['artist'];
+    $title = $row['title'];
   }
   $stmt = $db->prepare("INSERT INTO requests (singer,artist,title) VALUES(:singerName, :artist, :title)");
   $stmt->execute(array(":singerName" => $singerName, ":artist" => $artist, ":title" => $title));
   newSerial();
   $output = array('command'=>$command,'error'=>'false', 'success'=>true);
-        print(json_encode($output,JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES));
+  print(json_encode($output,JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES));
   exit();
 }
 
@@ -56,18 +55,18 @@ if ($command == "search")
   $wherestring = '';
   if ($no == 1) {
           $wherestring = "WHERE (combined LIKE \"%" . $terms[0] . "%\")";
-  } elseif ($no >= 2) { 
-          foreach ($terms as $i => $term) {
-         if ($i == 0) {
-                  $wherestring .= "WHERE ((combined LIKE \"%" . $term . "%\")";
-              }
-              if (($i > 0) && ($i < $no - 1)) {
-                  $wherestring .= " AND (combined LIKE \"%" . $term . "%\")";
-              }
-              if ($i == $no - 1) {
-                  $wherestring .= " AND (combined LIKE \"%" . $term . "%\") AND(artist<>'DELETED'))";
-              }
-          }
+  } elseif ($no >= 2) {
+    foreach ($terms as $i => $term) {
+      if ($i == 0) {
+        $wherestring .= "WHERE ((combined LIKE \"%" . $term . "%\")";
+      }
+      if (($i > 0) && ($i < $no - 1)) {
+        $wherestring .= " AND (combined LIKE \"%" . $term . "%\")";
+      }
+      if ($i == $no - 1) {
+        $wherestring .= " AND (combined LIKE \"%" . $term . "%\") AND(artist<>'DELETED'))";
+      }
+    }
   } else {
           $wherestring = "";
   }
@@ -76,9 +75,9 @@ if ($command == "search")
   $sql = "SELECT song_id,artist,title,combined FROM songdb $wherestring ORDER BY UPPER(artist), UPPER(title)";
   foreach ($db->query($sql) as $row)
   {
-      if ((stripos($row['combined'],'wvocal') === false) && (stripos($row['combined'],'w-vocal') === false) && (stripos($row['combined'],'vocals') === false)) {
-              $res[] = array('song_id'=>$row['song_id'],'artist'=>$row['artist'],'title'=>$row['title']);
-      }
+    if ((stripos($row['combined'],'wvocal') === false) && (stripos($row['combined'],'w-vocal') === false) && (stripos($row['combined'],'vocals') === false)) {
+      $res[] = array('song_id'=>$row['song_id'],'artist'=>$row['artist'],'title'=>$row['title']);
+    }
   }
   $output = array("command" => "search", "songs" => $res);
   header('Content-type: application/json');

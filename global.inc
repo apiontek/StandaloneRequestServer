@@ -2,7 +2,7 @@
 include("settings.inc");
 $db = new PDO("sqlite:$dbFilePath");
 
-$db->exec("CREATE TABLE IF NOT EXISTS songdb (song_id integer PRIMARY KEY AUTOINCREMENT, artist text, title  TEXT, combined TEXT UNIQUE)"); 
+$db->exec("CREATE TABLE IF NOT EXISTS songdb (song_id integer PRIMARY KEY AUTOINCREMENT, artist text, title  TEXT, combined TEXT UNIQUE)");
 $db->exec("CREATE TABLE IF NOT EXISTS state (accepting bool, serial integer NOT NULL)");
 $db->exec("INSERT OR IGNORE INTO state (rowid,accepting,serial) VALUES(0,0,1)");
 $db->exec("CREATE UNIQUE INDEX IF NOT EXISTS idx_songstrings ON songdb(combined)");
@@ -12,8 +12,8 @@ $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $songdbtable = "songdb";
 $requeststable = "requests";
 
-if (isset($_SERVER['REFERER'])) $referer = $_SERVER['REFERER']; 
-function siteheader() 
+if (isset($_SERVER['REFERER'])) $referer = $_SERVER['REFERER'];
+function siteheader()
 {
   global $venueName;
   echo "<html>
@@ -66,12 +66,12 @@ function getAccepting()
   return $accepting;
 }
 
-function searchform() 
+function searchform()
 {
   echo '<p><input type="search" name="q" autofocus autocomplete="off"
       placeholder="Type here to search songs"
       hx-post="/search.php"
-      hx-trigger="keyup changed delay:500ms, search" 
+      hx-trigger="keyup changed delay:500ms, search"
       hx-target="#data-target"></p>';
   echo '<div id="data-target">';
   helpHints();
