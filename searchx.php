@@ -48,7 +48,7 @@ $unique = array_unique($res);
 
 foreach ($unique as $key => $val) {
   if ($accepting) {
-    $entries[] = "<button class=\"result song\" onclick=\"submitreq(${key})\">" . $val . "</button>";
+    $entries[] = "<button class=\"result song\" hx-get=\"/modal.php\" hx-target=\"body\" hx-swap=\"beforeend\" ignorethisproperty=\"submitreq(${key})\">" . $val . "</button>";
   } else {
     $entries[] = "<button class=\"result song\">" . $val . "</button>";
   }
