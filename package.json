@@ -31,9 +31,9 @@
   "homepage": "https://github.com/apiontek/StandaloneRequestServer#readme",
   "devDependencies": {
     "@exampledev/new.css": "^1.1.3",
-    "clean-css-cli": "^5.6.1",
+    "clean-css-cli": "^5.6.2",
     "concurrently": "^7.6.0",
-    "htmx.org": "^1.8.4",
+    "htmx.org": "^1.8.6",
     "onchange": "^7.1.0",
     "uglify-js": "^3.17.4"
   }
