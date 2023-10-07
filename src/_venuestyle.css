@@ -94,7 +94,7 @@ textarea:focus-visible {
   box-shadow: 0 0 8px var(--nc-lk-2);
 }
 input[type=text] {
-  /* width: 100%; */
+  margin-bottom: 1rem;
 }
 #song-search-input-container {
   display: grid;
