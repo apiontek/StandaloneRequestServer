@@ -7,8 +7,7 @@ $input_query = trim(preg_replace('!\s+!', ' ', $_GET['q']));
 // If query is empty, remove search.php?q= from location bar
 if ($input_query == "")
 {
-  $all_headers = getallheaders();
-  if ($all_headers['Hx-Request'])
+  if (array_key_exists("HX-Request", getallheaders()))
   {
     header("HX-Replace-Url: /");
   }
@@ -73,7 +72,7 @@ if (ctype_space($input_query) || strlen($input_query) < 3) {
         hx-post=\"/req-modal.php\"
         hx-target=\"body\"
         hx-swap=\"beforeend\"
-        hx-vals='{\"songid\":\"${key}\"}'>" . $val . "</button>";
+        hx-vals='{\"songid\":\"{$key}\"}'>" . $val . "</button>";
     } else {
       $entries[] = "<button class=\"result song\">" . $val . "</button>";
     }
