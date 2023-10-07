@@ -100,14 +100,16 @@ input[type=text] {
   display: grid;
   grid-template-columns: auto min-content;
   margin-bottom: 1rem;
-  width: 100%;
+  /* width: 100%; */
   gap: 0.5rem;
   & input[type=search] {
+    width: 100%;
     margin: 0;
   }
   & button[type=reset] {
     padding: 0.7rem 0.7rem 0.6rem;
     font-size: larger;
+    min-width: 1%;
   }
 }
 
