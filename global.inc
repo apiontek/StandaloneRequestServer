@@ -88,13 +88,14 @@ function searchform($query = "")
       autocomplete="off"
       placeholder="Type here to search songs"
       hx-get="/search.php"
+      hx-sync="this:replace"
       hx-push-url="true"
       hx-trigger="input changed delay:200ms, search"
       hx-target="#data-target"
       hx-select="#data-target"
       hx-on:clear-search="
         this.value = \'\';
-        htmx.trigger(this, \'search\');
+        htmx.trigger(this, \'input\');
         htmx.find(\'#song-search-input-clear\').setAttribute(\'disabled\', \'true\');
       "
       hx-on:input="

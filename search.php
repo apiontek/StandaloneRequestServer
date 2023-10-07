@@ -1,10 +1,27 @@
 <?php
 include('global.inc');
-siteheader();
-navbar();
 
 // Reduce multiple spaces to single spaces, and trim start & end whitespace
 $input_query = trim(preg_replace('!\s+!', ' ', $_GET['q']));
+
+// If query is empty, remove search.php?q= from location bar
+if ($input_query == "")
+{
+  $all_headers = getallheaders();
+  if ($all_headers['Hx-Request'])
+  {
+    header("HX-Replace-Url: /");
+  }
+  else
+  {
+    header("Location: /");
+  }
+}
+
+
+siteheader();
+navbar();
+
 searchform($input_query);
 echo '<div id="data-target">';
 
