@@ -1,18 +1,15 @@
 {
   "name": "standalonerequestserver",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Standalone basic single-venue request server implementation for use with OpenKJ.",
   "type": "module",
   "scripts": {
-    "update_local_assets": "cp node_modules/@exampledev/new.css/new.css css/new.css && cp node_modules/htmx.org/dist/htmx.min.js js/htmx.min.js",
-    "build_css": "NODE_ENV=production node_modules/.bin/cleancss -O 2 -o css/style.min.css node_modules/@exampledev/new.css/new.css css/venuestyle.css",
-    "watch_css": "node_modules/.bin/cleancss --watch -O 2 -o css/style.min.css node_modules/@exampledev/new.css/new.css css/venuestyle.css",
-    "build_js": "NODE_ENV=production node_modules/.bin/uglifyjs -o js/script.min.js --compress --mangle -- node_modules/htmx.org/dist/htmx.min.js js/script.js",
-    "dev_build_js": "node_modules/.bin/uglifyjs -o js/script.min.js --compress --mangle -- node_modules/htmx.org/dist/htmx.min.js js/script.js",
-    "watch_js": "onchange 'js/script.js' -- npm run dev_build_js",
-    "dev": "concurrently --kill-others \"npm run watch_css\" \"npm run watch_js\"",
-    "build": "npm run build_css && npm run build_js"
+    "clean": "del-cli -f css/*",
+    "dev": "NODE_ENV=development lightningcss --browserslist --sourcemap --bundle --output-file css/style.css src/style.css",
+    "watch": "NODE_ENV=development onchange 'src/*.css' -- npm run dev:css",
+    "prebuild": "npm run clean",
+    "build": "NODE_ENV=production lightningcss --browserslist --minify --bundle --output-file css/style.css src/style.css"
   },
   "repository": {
     "type": "git",
@@ -30,11 +27,10 @@
   },
   "homepage": "https://github.com/apiontek/StandaloneRequestServer#readme",
   "devDependencies": {
-    "@exampledev/new.css": "^1.1.3",
-    "clean-css-cli": "^5.6.2",
-    "concurrently": "^7.6.0",
-    "htmx.org": "^1.8.6",
-    "onchange": "^7.1.0",
-    "uglify-js": "^3.17.4"
+    "@exampledev/new.css": "^1.1.x",
+    "del-cli": "^5.1.0",
+    "htmx.org": "^1.9.x",
+    "lightningcss-cli": "^1.22.x",
+    "onchange": "^7.1.x"
   }
 }

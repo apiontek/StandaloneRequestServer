@@ -11,6 +11,7 @@ $db->exec("CREATE TABLE IF NOT EXISTS requests (request_id integer PRIMARY KEY A
 $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $songdbtable = "songdb";
 $requeststable = "requests";
+$is_dev = TRUE;
 
 if (isset($_SERVER['REFERER'])) $referer = $_SERVER['REFERER'];
 function siteheader()
@@ -21,33 +22,21 @@ function siteheader()
     <meta charset=\"UTF-8\">
     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">
     <title>$venueName Songbook</title>
-    <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/@xz/fonts@1.0.2/serve/metropolis.min.css\">
-    <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/@fontsource/righteous@4.5.7/index.min.css\">
 
-    <!--
-      link tags for using un-optimized css style assets
-      to use, uncomment, and comment out the optimized style.min.css link tag below
-    -->
-    <!--  <link rel=\"stylesheet\" type=\"text/css\" href=\"css/new.css\" />        -->
-    <!--  <link rel=\"stylesheet\" type=\"text/css\" href=\"css/venuestyle.css\" /> -->
-    <!--
-      optimized css style sheet
-      comment out if using un-optimized css style assets above
-    -->
-    <link rel=\"stylesheet\" type=\"text/css\" href=\"css/style.min.css\" />
+    <link rel=\"preconnect\" href=\"https://cdn.jsdelivr.net\" crossorigin>
+    <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/@xz/fonts@1.0.2/serve/metropolis.css\" integrity=\"sha256-EbF7uuhKup7x84hcfaVXj5gof+v/9hfv7Wsxud7vWyU=\" crossorigin=\"anonymous\">
+    <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/@fontsource/righteous@5.0.14/index.css\" integrity=\"sha256-3LZETteO5Rdt11DQIU0Uj0He3Tdr/JnfBZcsP87UifE=\" crossorigin=\"anonymous\">
 
-    <!--
-      script tags for using un-optimized js script assets
-      to use, uncomment, and comment out the optimized script.min.js script tag below
-    -->
-    <!-- <script type=\"text/javascript\" src=\"js/htmx.min.js\"></script>  -->
-    <!-- <script type=\"text/javascript\" src=\"js/script.js\"></script>    -->
-    <!--
-      optimized js script
-      comment out if using un-optimized js script assets above
-    -->
-    <script type=\"text/javascript\" src=\"js/script.min.js\"></script>
-  </head><body>";
+    <link rel=\"stylesheet\" type=\"text/css\" href=\"css/style.css\" />
+
+    <script defer src=\"https://cdn.jsdelivr.net/npm/htmx.org@1.9.6/dist/htmx.min.js\" integrity=\"sha256-y7cjwwXPbWMVyJCQmBVSNYhQni4JKln4z8SohYKWidU=\" crossorigin=\"anonymous\"></script>
+  </head>
+  <body
+    hx-on:keydown=\"
+      const reqModal = htmx.find('#req-modal');
+      if (event.key === 'Escape' && reqModal)
+        htmx.trigger(reqModal, 'remove-req-modal');
+    \">";
 }
 
 function sitefooter() {
@@ -86,16 +75,21 @@ function getAccepting()
   return $accepting;
 }
 
-function searchform()
+function searchform($query = "")
 {
-  echo '<p><input type="search" name="q" autofocus autocomplete="off"
+  echo '<input
+      type="search"
+      name="q"
+      value="' . $query . '"
+      autofocus
+      autocomplete="off"
       placeholder="Type here to search songs"
-      hx-post="/search.php"
-      hx-trigger="keyup changed delay:500ms, search"
-      hx-target="#data-target"></p>';
-  echo '<div id="data-target">';
-  helpHints();
-  echo '</div>';
+      hx-get="/search.php"
+      hx-push-url="true"
+      hx-trigger="input changed delay:200ms, search"
+      hx-target="#data-target"
+      hx-select="#data-target"
+      >';
 }
 
 
@@ -115,6 +109,35 @@ function helpHints()
     </details>';
 }
 
+
+function reqFormContent($songid = "")
+{
+  echo "<input type=\"hidden\" name=\"songid\" value=\"$songid\">
+  <label>Who will sing it?</label>
+  <input type=\"text\" name=\"singer\"
+    autocomplete=\"off\" autofocus
+    placeholder=\"Enter your name or nickname\"
+    hx-on:input=\"
+      if (this.value.length > 0)
+        htmx.find('#send-song-request').removeAttribute('disabled');
+      else
+        htmx.find('#send-song-request').setAttribute('disabled', 'true');
+    \"
+    >
+  <div class=\"req-modal-buttons\">
+    <button
+      id=\"cancel-song-request\"
+      type=\"button\"
+      class=\"close\"
+      hx-on:click=\"htmx.trigger('#req-modal', 'remove-req-modal');\"
+      >Close</button>
+    <button
+      type=\"submit\"
+      id=\"send-song-request\"
+      disabled
+      >Send Request</button>
+  </div>";
+}
 
 
 function getSerial()

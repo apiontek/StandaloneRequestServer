@@ -5,14 +5,7 @@ $songid = $_POST['songid'];
 $singer = $_POST['singer'];
 
 if ($singer == '') {
-  echo "<input type=\"hidden\" name=\"songid\" value=\"$songid\">
-    <label>Who will sing it?</label>
-    <input class=\"error\" type=\"text\" name=\"singer\" autocomplete=\"off\" autofocus placeholder=\"Enter your name or nickname\">
-    <p class=\"error\">Sorry, you must input a singer name.  Please go back and try again.</p>
-    <div class=\"req-modal-buttons\">
-      <button type=\"button\" onClick=\"removeReqModal()\" class=\"close\">Close</button>
-      <input type=\"submit\" value=\"Send Request\">
-    </div>";
+  reqFormContent($songid);
   die();
 }
 
@@ -31,7 +24,11 @@ newSerial();
 
 echo "<p>Request sent for $singer</p>
   <div class=\"req-modal-buttons\">
-  <button type=\"button\" onClick=\"removeReqModal()\" class=\"close\">Close</button>
+  <button
+    type=\"button\"
+    class=\"close\"
+    hx-on:click=\"htmx.trigger('#req-modal', 'remove-req-modal');\"
+    >Close</button>
   </div>";
 
 die();

@@ -4,6 +4,9 @@ siteheader();
 navbar();
 
 searchform();
+echo '<div id="data-target">';
+helpHints();
+echo '</div>';
 
 sitefooter();
 
