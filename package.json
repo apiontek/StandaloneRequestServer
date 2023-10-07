@@ -7,7 +7,7 @@
   "scripts": {
     "clean": "del-cli -f css/*",
     "dev": "NODE_ENV=development lightningcss --browserslist --sourcemap --bundle --output-file css/style.css src/style.css",
-    "watch": "NODE_ENV=development onchange 'src/*.css' -- npm run dev:css",
+    "watch": "NODE_ENV=development onchange 'src/*.css' -- npm run dev",
     "prebuild": "npm run clean",
     "build": "NODE_ENV=production lightningcss --browserslist --minify --bundle --output-file css/style.css src/style.css"
   },

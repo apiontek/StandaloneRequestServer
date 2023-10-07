@@ -46,7 +46,7 @@ function sitefooter() {
 function navbar()
 {
   global $venueName;
-  echo "<header><h1>$venueName Songbook</h1></header><main>";
+  echo "<header><h1><a href='/' hx-boost='true'>$venueName Songbook</a></h1></header><main>";
 }
 
 function setAccepting($accepting)
@@ -77,7 +77,10 @@ function getAccepting()
 
 function searchform($query = "")
 {
-  echo '<input
+  $disabled = "";
+  if ($query == "") $disabled = "disabled";
+  echo '<div id="song-search-input-container"><input
+      id="song-search-input"
       type="search"
       name="q"
       value="' . $query . '"
@@ -89,7 +92,26 @@ function searchform($query = "")
       hx-trigger="input changed delay:200ms, search"
       hx-target="#data-target"
       hx-select="#data-target"
-      >';
+      hx-on:clear-search="
+        this.value = \'\';
+        htmx.trigger(this, \'search\');
+        htmx.find(\'#song-search-input-clear\').setAttribute(\'disabled\', \'true\');
+      "
+      hx-on:input="
+        if (this.value.length > 0)
+          htmx.find(\'#song-search-input-clear\').removeAttribute(\'disabled\');
+        else
+          htmx.find(\'#song-search-input-clear\').setAttribute(\'disabled\', \'true\');
+        "
+      >
+      <button id="song-search-input-clear" type="reset" ' . $disabled . '
+        hx-on:click="htmx.trigger(\'#song-search-input\', \'clear-search\')"
+        >
+        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+          <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+        </svg>
+      </button>
+      </div>';
 }
 
 

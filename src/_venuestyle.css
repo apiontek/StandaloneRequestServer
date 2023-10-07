@@ -49,13 +49,32 @@ header {
   padding-top: 2rem;
   padding-bottom: 1.5rem;
 }
-header > h1 {
+header > h1,
+header > h1 > a {
   font-family: var(--nc-font-brand);
   color: var(--nc-lk-2);
+  text-decoration: none;
 }
 header > nav {
   font-weight: 700;
 }
+
+
+/*
+  SVG icon style help
+*/
+svg {
+  overflow: visible !important;
+  vertical-align: middle;
+}
+.bi {
+  overflow: visible !important;
+  width: 1em;
+  height: 1em;
+  vertical-align: -.125em;
+  fill: currentColor;
+}
+
 
 /* Custom input styling */
 input,
@@ -74,11 +93,24 @@ textarea:focus-visible {
   border: 2px solid var(--nc-lk-2);
   box-shadow: 0 0 8px var(--nc-lk-2);
 }
-input[type=search],
 input[type=text] {
-  width: 100%;
-  margin-bottom: 1rem;
+  /* width: 100%; */
 }
+#song-search-input-container {
+  display: grid;
+  grid-template-columns: auto min-content;
+  margin-bottom: 1rem;
+  width: 100%;
+  gap: 0.5rem;
+  & input[type=search] {
+    margin: 0;
+  }
+  & button[type=reset] {
+    padding: 0.7rem 0.7rem 0.6rem;
+    font-size: larger;
+  }
+}
+
 
 /* Custom button styling */
 a button,
